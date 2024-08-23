@@ -9,16 +9,23 @@
 </head>
 
 <body>
-    <canvas id="myCanvas"></canvas>
+    <!-- <input class="toggle" type="range" name="" id=""> -->
+    <button class="toggle-buttons"> </button>
+    <audio src="" class="myaudio">
+        <source src="boop.mp3" type="audio/mpeg">
+    </audio>
+    <div class="container">
+        <canvas id="myCanvas"></canvas>
+    </div>
     <div class="buttons">
         <button id="reset" class="reset" onclick="reset()">reset</button>
         <div class="buttonControls">
-            <button onclick="reset()">&#8657;</button>
-            <div>
-                <button onclick="left()">&#8656;</button>
-                <button onclick="reset()">&#8658;</button>
+            <button class="upclk clklook" onclick="reset()">&#8657;</button>
+            <div class="leftright">
+                <button class="clklook leftclk" onclick="left()">&#8656;</button>
+                <button class="clklook rightclk" onclick="right()">&#8658;</button>
             </div>
-            <button onclick="down()">&#8659;</button>
+            <button class="clklook downclk" onclick="down()">&#8659;</button>
         </div>
     </div>
 </body>

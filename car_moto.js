@@ -2,22 +2,27 @@
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 const img = new Image();
+const enmyimg = new Image();
 const resetButt = document.getElementsByClassName('reset')
+enmyimg.src = './assists/enmycar.png';
 img.src = './assists/car.png';
-
+// console.log(enmyimg)
 // ---- Player and game settings
-let x = 800 - 100;
+let x = 600 - 100;
 let y = 190;
 let speed = 10;
 let enmySpeed = 2;
 let enmycar = [];
-let num_ofenmy = 5;
+let num_ofenmy = 8;
+let score = 0;
 //---- canavs settings 
 canvas.width = 500;
-canvas.height = 800;
+canvas.height = 700;
+canvas.style.width = '500px';
+canvas.style.height = '700px';
 
 const canHeight = canvas.height - 100;
-const canWidth = canvas.width - 95;
+const canWidth = canvas.width - 100;
 // Handle keypress for movement
 const keys = {};
 window.addEventListener('keydown', (e) => {
@@ -48,16 +53,47 @@ function movePlayer() {
         }
     }
 }
+//move with buttons 
+function left() {
+    if (y > 0) {
+        y -= speed;
+    }
+}
+function right() {
+    if (y < canWidth) {
+        y += speed;
+    }
+}
+
+function up() {
+    if (x > 0) {
+        x -= speed;
+    }
+}
+function down() {
+    if (x < canHeight) {
+        x += speed;
+    }
+}
+
+
 //-----  just code ---
 
+let scorecounter = setInterval(() => {
+    score += 1
+    console.log(score);
+}, 1000);
+
+function showscore() {
+    ctx.font = '30px lighter Courier New';
+    ctx.fillStyle = "white";
+    ctx.fillText(`${score}`, 50, 50);
+}
 // ------ just code ----- 
 // car touch game over
 function carPlayer() {
     ctx.drawImage(img, y, x, 100, 100);
     if (x < 0 || y < 0 || x > canHeight || y > canWidth) {
-        ctx.font = '30px Arial';
-        ctx.fillStyle = "white";
-        ctx.fillText('Game over!', 150, 250);
         return false;
     }
     return true;
@@ -69,7 +105,7 @@ function CarEnemy(cx, cy) {
     this.cy = cy;
 
     this.drawEnemy = () => {
-        ctx.drawImage(img, this.cy, this.cx, 100, 100);
+        ctx.drawImage(enmyimg, this.cy, this.cx, 100, 100);
     };
 
     this.moveEnemy = () => {
@@ -88,7 +124,7 @@ function checkCollision() {
         const car = enmycar[i];
         const distanceX = car.cx - x;
         const distanceY = car.cy - y;
-        if (Math.abs(distanceX) < 50 && Math.abs(distanceY) < 50) {
+        if (Math.abs(distanceX) <= 70 && Math.abs(distanceY) < 50) {
             console.log("Collision detected!");
             return true
         }
@@ -117,8 +153,8 @@ function positionCars() {
         }
     }
 }
-
 // Main animation loop
+
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     movePlayer();
@@ -128,10 +164,13 @@ function animate() {
         }
         requestAnimationFrame(animate);
     } else {
-        ctx.font = '30px Arial';
+        ctx.font = 'oblique bold 30px Courier New';
         ctx.fillStyle = "white";
         ctx.fillText('Game over!', canvas.height / 4, canvas.width / 2);
+        clearInterval(scorecounter)
+
     }
+    showscore();
 }
 
 // Initialize the game
