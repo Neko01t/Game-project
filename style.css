@@ -47,7 +47,7 @@ canvas {
     margin-top: 100px;
     border-radius: 20px;
     border: 1px solid transparent;
-    background-image: url('./assists/Road.png');
+    background-image: url('./imgs/Road.png');
     background-size: auto;
     animation: motion_road var(--speed) linear infinite;
     box-shadow: 0px -1px 20px 8px rgb(255 255 255 / 10%);

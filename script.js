@@ -4,8 +4,8 @@ const ctx = canvas.getContext('2d');
 const img = new Image();
 const enmyimg = new Image();
 const resetButt = document.getElementsByClassName('reset')
-enmyimg.src = './assists/enmycar.png';
-img.src = './assists/car.png';
+enmyimg.src = './imgs/enmycar.png';
+img.src = './imgs/car.png';
 // console.log(enmyimg)
 // ---- Player and game settings
 let x = 600 - 100;
