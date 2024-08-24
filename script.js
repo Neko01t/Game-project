@@ -10,7 +10,7 @@ img.src = './assists/car.png';
 // ---- Player and game settings
 let x = 600 - 100;
 let y = 190;
-let speed = 10;
+let speed = 5;
 let enmySpeed = 2;
 let enmycar = [];
 let num_ofenmy = 8;
